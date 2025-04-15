@@ -4,7 +4,7 @@ import SocialSidebar from "@/components/SocialSidebar";
 
 export default function Home() {
   return (
-    <main className="px-4 max-w-4xl mx-auto">
+    <main className="px-4 max-w-[1200px] mx-auto relative">
         <SocialSidebar />
       <Hero/>
           {/*이 후 내용들 예:ImageSlideIn 컴포넌트들*/}
