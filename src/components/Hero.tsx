@@ -5,10 +5,32 @@ import { useEffect, useRef, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import {AnimatePresence} from 'framer-motion';
 
-const images = [
-    { src: '/dongchan.png', caption: '첫 번째 경험 설명입니다.' },
-    { src: '/dongchan.png', caption: '두 번째 경험 설명입니다.' },
-    { src: '/dongchan.png', caption: '세 번째 경험 설명입니다.' },
+type ImageItem = {
+    src: string;
+    title:string;
+    paragraphs:string[];
+}
+
+const images: ImageItem[] = [
+    {
+        src: '/turtle.jpg',
+        title: '생명에 대한 애정으로 시작된 배움',
+        paragraphs: [
+            "어린 시절부터 수중 생물, 특히 거북이를 돌보는 것이 나의 오랜 취미였습니다.",
+            "단순히 키우는 것을 넘어서, 이 작은 생명들이 어떻게 하면 건강하고 안정된 환경에서 자랄 수 있을지 늘 고민해왔습니다.",
+            "물의 온도, 수질, 먹이의 질 하나하나에 주의를 기울이며, 최상의 컨디션을 유지할 수 있도록 세심하게 관찰하고 꾸준히 관리해왔습니다.",
+            "이 과정은 생명에 대한 책임감을 배우는 동시에, 끈기와 세밀한 관찰력, 환경에 대한 민감한 감수성을 키우는 시간이었습니다.",
+            "지금도 저는 어떤 일이든 생명을 대하듯 신중하고 정성스럽게 접근하려고 합니다."
+        ]
+    },
+    {
+        src: '/dongchan.png',
+        caption: '두 번째 경험 설명입니다.'
+    },
+    {
+        src: '/dongchan.png',
+        caption: '세 번째 경험 설명입니다.'
+    },
 ];
 
 export default function Hero() {
@@ -115,7 +137,7 @@ export default function Hero() {
                     className="px-6 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
                     onClick={() => setIsModalOpen(true)}
                 >
-                    experience
+                    Hoby
                 </button>
                 <button className="px-6 py-2 bg-gray-300 text-gray-800 rounded-xl hover:bg-gray-400 transition">
                     버튼 2
@@ -162,9 +184,14 @@ export default function Hero() {
                         </div>
 
                         {/* 설명 텍스트 */}
-                        <p className="text-center text-gray-700 mb-4">
-                            {images[currentSlide].caption}
-                        </p>
+                        <div className="text-center text-gray-700 mb-4">
+                            <h2 className="text-xl font-bold mb-4">
+                                {images[currentSlide].title}
+                            </h2>
+                            {images[currentSlide].paragraphs.map((para, index) => (
+                                <p key={index} className="mb-2">{para}</p>
+                            ))}
+                        </div>
 
                         {/* Exit 버튼 */}
                         <div className="flex justify-center">
