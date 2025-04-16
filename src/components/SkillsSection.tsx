@@ -56,7 +56,7 @@ const categories = [
 
 export default function SkillsSection() {
     return (
-        <section className="mt-32 px-4">
+        <section className="mt-0 px-4">
             {/* Section Title */}
             <motion.h2
                 className="text-3xl font-bold text-center mb-12 text-gray-800"
