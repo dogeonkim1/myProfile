@@ -44,6 +44,29 @@ const images: ImageItem[] = [
         ]
     },
 ];
+const tmiSlides = [
+    {
+        src:'/tmi1.jpg',
+        title:'',
+        paragraphs:[
+
+        ]
+    },
+    {
+        src:'/tmi2.jpg',
+        title:'',
+        paragraphs:[
+
+        ]
+    },
+    {
+        src:'/tmi3.jpg',
+        title:'',
+        paragraphs:[
+
+        ]
+    },
+];
 
 export default function Hero() {
     const fullText = "안녕녕하세요. FE개발자를 꿈꾸는 김도건입니다.";
@@ -53,6 +76,9 @@ export default function Hero() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [direction, setDirection] = useState(0);
+    const [isTmiModalOpen, setIsTmiModalOpen] = useState(false);
+    const [tmiSlide, setTmiSlide] = useState(0);
+    const [tmiDirection, setTmiDirection] = useState(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -88,6 +114,16 @@ export default function Hero() {
     const prevSlide = () => {
         setDirection(-1);
         setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
+    };
+
+    const nextTmiSlide = () => {
+        setTmiDirection(1);
+        setTmiSlide((prev) => (prev + 1) % tmiSlides.length);
+    };
+
+    const prevTmiSlide = () => {
+        setTmiDirection(-1);
+        setTmiSlide((prev) => (prev -1 + tmiSlides.length) % tmiSlides.length);
     };
 
     //이미지 애니메이션 설정
@@ -149,10 +185,13 @@ export default function Hero() {
                     className="px-6 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
                     onClick={() => setIsModalOpen(true)}
                 >
-                    Hoby
+                    Hobby
                 </button>
-                <button className="px-6 py-2 bg-gray-300 text-gray-800 rounded-xl hover:bg-gray-400 transition">
-                    버튼 2
+                <button
+                    className="px-6 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
+                    onClick={() => setIsTmiModalOpen(true)}
+                >
+                    TMI
                 </button>
             </motion.div>
 
@@ -209,6 +248,78 @@ export default function Hero() {
                         <div className="flex justify-center">
                             <button
                                 onClick={() => setIsModalOpen(false)}
+                                className="px-6 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600 transition"
+                            >
+                                Exit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {isTmiModalOpen && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+                    style={{backgroundColor:'rgba(0,0,0,0.5)'}}
+                    onClick={() => setIsTmiModalOpen(false)}
+                >
+                    <div
+                        className="relative bg-white p-6 rounded-xl max-w-2xl w-full"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {/*슬라이더*/}
+                        <div className="relative flex items-center justify-center mb-4 h-[300px]">
+                            <button
+                                onClick={prevTmiSlide}
+                                className="absolute left-0 p-2 text-gray-600 hover:text-black z-10"
+                            >
+                                <FaArrowLeft size={20}/>
+                            </button>
+
+                            <div className="w-full h-[300px] flex justify-center items-center overflow-hidden relative">
+                                <AnimatePresence custom={tmiDirection} mode="wait">
+                                    <motion.img
+                                        key={`${tmiSlide}-${tmiSlides[tmiSlide].src}`}
+                                        src={tmiSlides[tmiSlide].src}
+                                        alt={`슬라이드 ${tmiSlide + 1}`}
+                                        className="max-h-[300px] w-auto object-contain rounded-lg absolute"
+                                        custom={tmiDirection}
+                                        variants={variants}
+                                        initial="enter"
+                                        animate="center"
+                                        exit="exit"
+                                        transition={{
+                                            x:{type: "spring", stiffness:300, damping:30},
+                                            opacity:{duration:0.2},
+                                        }}
+                                    />
+                                </AnimatePresence>
+                            </div>
+
+                            <button
+                                onClick={nextTmiSlide}
+                                className="absolute right-0 p-2 text-gray-600 hover:text-black z-10"
+                            >
+                                <FaArrowRight size={20}/>
+                            </button>
+                        </div>
+
+                        {/*설명 텍스트*/}
+                        <div className="text-center text-gray-700 mb-4">
+                            <h2 className="text-xl font-bold mb-4">
+                                {tmiSlides[tmiSlide].title}
+                            </h2>
+                            {tmiSlides[tmiSlide].paragraphs.map((para, index) => (
+                                <p key={index} className="mb-2">{para}
+                                    {para}
+                                </p>
+                            ))}
+                        </div>
+
+                        {/*Exit 버튼*/}
+                        <div className="flex justify-center">
+                            <button
+                                onClick={() => setIsTmiModalOpen(false)}
                                 className="px-6 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600 transition"
                             >
                                 Exit
