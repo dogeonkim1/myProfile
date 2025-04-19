@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-const codeSamples = {
+const codeSamples: { [key: string]: string } = {
     "Hero.tsx": `'use client'
 
 import { motion } from 'framer-motion';
@@ -324,15 +324,17 @@ export default function SkillsSection() {
       </div>
     </section>
   );
-}`
+}`,
 };
 
-{/*---------------------------------------------------------------------------------------------*/}
+{
+    /*---------------------------------------------------------------------------------------------*/
+}
 export default function ShowCode() {
-    const [selectFile, setSelectFile] = useState<keyof typeof codeSamples>("1.tsx");
+    const [selectFile, setSelectFile] = useState<string>(Object.keys(codeSamples)[0]);
 
-    const handleButtonClick = (file: keyof typeof codeSamples) => {
-        setSelectFile(file);
+    const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
+        setSelectFile(e.currentTarget.value);
     };
 
     return (
@@ -349,7 +351,8 @@ export default function ShowCode() {
                                     ? "bg-blue-500 text-white"
                                     : "bg-zinc-800 hover:bg-zinc-700 text-zinc-300"
                             }`}
-                            onClick={() => handleButtonClick(file as keyof typeof codeSamples)}
+                            value={file}
+                            onClick={handleButtonClick}
                         >
                             {file}
                         </button>
@@ -358,21 +361,33 @@ export default function ShowCode() {
             </aside>
 
             {/* 코드뷰 */}
-            <main className="w-full lg:w-4/5 bg-zinc-800 text-white p-6 overflow-auto">
-                <h2 className="text-2xl font-semibold mb-4 border-b border-zinc-700 pb-2">
-                    {selectFile}
-                </h2>
-                <div className="bg-zinc-900 rounded-lg shadow-inner p-4 max-h-[70vh] overflow-auto">
-                    <SyntaxHighlighter language="tsx" style={vscDarkPlus} wrapLines={true} showLineNumbers>
+            <main className="flex-grow w-full lg:w-4/5 bg-zinc-800 text-white p-6 overflow-hidden">
+                <h2 className="text-2xl font-semibold mb-4 border-b border-zinc-700 pb-2">{selectFile}</h2>
+
+                <div className="bg-zinc-900 rounded-lg shadow-inner p-4 h-[calc(100vh-10rem)] overflow-auto whitespace-pre-wrap break-words">
+                    <SyntaxHighlighter
+                        language="tsx"
+                        style={vscDarkPlus}
+                        wrapLines={true}
+                        showLineNumbers
+                        customStyle={{
+                            backgroundColor: 'transparent',
+                            padding: 0,
+                            margin: 0,
+                            overflowX: 'auto', // 수평 스크롤 허용
+                            whiteSpace: 'pre-wrap', // 긴 줄도 줄바꿈되도록
+                            wordBreak: 'break-word',
+                        }}
+                    >
                         {codeSamples[selectFile]}
                     </SyntaxHighlighter>
                 </div>
 
                 {/* 아래 이미지 구조 영역 */}
-                {/*<div className="mt-8 border-t border-zinc-700 pt-6">*/}
-                {/*    <h3 className="text-xl font-semibold mb-4">📦 프로젝트 구조</h3>*/}
-                {/*    <img src="/ureca.jpg" alt="홈페이지 구조도" className="w-full rounded-lg shadow-md" />*/}
-                {/*</div>*/}
+                {/*<div className="mt-8 border-t border-zinc-700 pt-6">
+        <h3 className="text-xl font-semibold mb-4">📦 프로젝트 구조</h3>
+        <img src="/ureca.jpg" alt="홈페이지 구조도" className="w-full rounded-lg shadow-md" />
+    </div>*/}
             </main>
         </div>
     );
