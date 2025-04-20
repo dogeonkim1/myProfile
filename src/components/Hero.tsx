@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { memo, MouseEvent, useCallback, useEffect, useRef, useState } from "react";
+import { memo, MouseEvent, useCallback, useEffect, useState } from "react";
 import HobbyModal from "./HobbyModal";
 import TMIModal from "./TMIModal";
 

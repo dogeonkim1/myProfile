@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
     output: "export",
     basePath: isProd ? "/myProfile" : "",
     assetPrefix: isProd ? "/myProfile/" : "",
+    images: {
+        unoptimized: true,
+    },
 };
 
 export default nextConfig;

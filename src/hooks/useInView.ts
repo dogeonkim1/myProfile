@@ -24,6 +24,6 @@ export default function useInView(threshold = 0.1) {
                 observer.disconnect();
             }
         };
-    }, [ref]);
+    }, [ref,threshold]);
     return {ref, isInView};
 }
