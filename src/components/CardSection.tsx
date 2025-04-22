@@ -25,7 +25,7 @@ const cardData = [
     bgColor: "bg-zinc-800",
     labelColor: "bg-yellow-400",
     text: "22.09.30 ~ 04.08.29",
-    image: "/dongchan.png",
+    image: "/ureca.jpg",
   },
   {
     title: "In Ureca",
