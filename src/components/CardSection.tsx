@@ -12,6 +12,12 @@ const cardData = [
     labelColor: "bg-sky-300",
     text: "텍스트가 들어가게될 영역입니다.",
     image: "/dongchan.png",
+    modalContent:(
+        <>
+          <h3 className="text-lg font-semibold mb-2">세부 내용1</h3>
+          <p>상세 설명</p>
+        </>
+    ),
   },
   {
     title: "In paris",
@@ -19,6 +25,12 @@ const cardData = [
     labelColor: "bg-green-400",
     text: "19.09.26 ~ 22.07.17",
     image: "/parismain.jpg",
+    modalContent:(
+        <>
+          <h3 className="text-lg font-semibold mb-2">세부 내용1</h3>
+          <p>상세 설명</p>
+        </>
+    ),
   },
   {
     title: "In Yonsei",
@@ -26,6 +38,12 @@ const cardData = [
     labelColor: "bg-yellow-400",
     text: "22.09.30 ~ 04.08.29",
     image: "/ureca.jpg",
+    modalContent:(
+        <>
+          <h3 className="text-lg font-semibold mb-2">세부 내용1</h3>
+          <p>상세 설명</p>
+        </>
+    ),
   },
   {
     title: "In Ureca",
@@ -33,6 +51,12 @@ const cardData = [
     labelColor: "bg-purple-400",
     text: "25.01.20 ~ 25.08.12",
     image: "/ureca.jpg",
+    modalContent:(
+        <>
+          <h3 className="text-lg font-semibold mb-2">세부 내용1</h3>
+          <p>상세 설명</p>
+        </>
+    ),
   },
 ];
 
@@ -113,7 +137,7 @@ function InfoCards() {
                   닫기
                 </button>
                 <h2 className="text-xl font-bold mb-4">{cardData[openIndex].title}</h2>
-                <p>{cardData[openIndex].text}</p>
+                <div>{cardData[openIndex].modalContent}</div>
               </motion.div>
             </motion.div>
           )}
