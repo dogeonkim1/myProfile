@@ -17,9 +17,9 @@ const eslintConfig = [
       "react/no-unescaped-entities": "off",
 
       // react-hooks/exhaustive-deps 경고를 활성화
-      "react-hooks/exhaustive-deps": "warn",  // 혹은 "error"
+      "react-hooks/exhaustive-deps": "warn",  // 또는 "error"
 
-      // 사용하지 않는 변수에 대한 경고를 강제로 활성화
+      // 사용되지 않는 변수에 대한 경고를 강제로 활성화
       "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
     },
   },
