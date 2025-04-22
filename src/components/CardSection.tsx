@@ -40,7 +40,7 @@ const cardData = [
         bgColor: "bg-sky-200",
         labelColor: "bg-sky-300",
         text: "20.12.20 ~ 21.04.30",
-        image: "/certification.png",
+        image: "/certification1.png",
         modalContent:(
             <>
                 <h3 className="text-lg font-semibold mb-2">처음 만난 코드, 반복으로 쌓아올린 성취</h3>
@@ -138,7 +138,7 @@ function InfoCards() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8 }}
       >
-        Card
+          “도전에서 성장으로, 주도적인 개발자로 리빌딩한 여정”
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 py-10 px-4">

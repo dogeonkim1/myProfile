@@ -27,7 +27,7 @@ function Home() {
                 </FadeInSection>
             </section>
 
-            <section className="min-h-screen px-4 max-w-[1000px] mx-auto relative mb-6">
+            <section className="px-4 max-w-[1000px] mx-auto relative mb-4">
                 <FadeInSection>
                     <div className="mb-4">
                         <CardSection />
@@ -35,7 +35,7 @@ function Home() {
                 </FadeInSection>
             </section>
 
-            <section className="min-h-screen px-4 max-w-[1000px] mx-auto relative mb-6">
+            <section className="px-4 max-w-[1000px] mx-auto relative mb-4 -mt-2">
                 <FadeInSection>
                     <div className="mb-4">
                         <ShowCode />
