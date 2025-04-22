@@ -11,6 +11,18 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      // react/no-unescaped-entities 규칙을 비활성화
+      "react/no-unescaped-entities": "off",
+
+      // react-hooks/exhaustive-deps 경고를 활성화
+      "react-hooks/exhaustive-deps": "warn",  // 혹은 "error"
+
+      // 사용하지 않는 변수에 대한 경고를 강제로 활성화
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    },
+  },
 ];
 
 export default eslintConfig;
