@@ -7,19 +7,6 @@ import Image from "next/image";
 
 const cardData = [
   {
-    title: "In",
-    bgColor: "bg-sky-200",
-    labelColor: "bg-sky-300",
-    text: "텍스트가 들어가게될 영역입니다.",
-    image: "/dongchan.png",
-    modalContent:(
-        <>
-          <h3 className="text-lg font-semibold mb-2">세부 내용1</h3>
-          <p>상세 설명</p>
-        </>
-    ),
-  },
-  {
     title: "In paris",
     bgColor: "bg-green-900",
     labelColor: "bg-green-400",
@@ -27,17 +14,43 @@ const cardData = [
     image: "/parismain.jpg",
     modalContent:(
         <>
-          <h3 className="text-lg font-semibold mb-2">세부 내용1</h3>
-          <p>상세 설명</p>
+          <h3 className="text-lg font-semibold mb-2">새로운 시작과 첫 도전</h3>
+          <p>2019년 9월, 항공정비사의 꿈을 안고 프랑스로 유학을 떠났습니다.<br/> 아무것도 모른 채 그저
+              막연한 꿈 하나만 가지고 시작한 유학생활이었고, 모든게 낯설었지만 그만큼 설렘도 컸습니다.<br/>
+              운 좋게 좋은 사람들과 인연을 맺고, 다양한 문화와 환경을 경험하면서 앞으로 모든 일이 잘 풀릴 것
+              같다는 기대감이 생겼습니다.
+              하지만 11월, 파리의 대규모 교통 파업, 전 세계를 멈춰 세운 코로나 팬데믹은 수업을 중단시키고
+              바깥 출입또한 자유롭게 하지 못하게 했습니다. 그저 가만히 시간을 흘려보낼 순 없어, 불어 공부를 하며
+              그때 처음 코딩이라는 새로운 분야를 접하게 되었습니다.
+              당시엔 부모님의 경제적 도움 없이 모든 생활과 학업을 혼자서 해결하고 있었습니다.
+              누구에게도 기대지 않고, 온전히 내 힘으로 버텨낸 시간이었고 그것이 저에겐 큰 자부심이 되었습니다.
+              혼자서 해외에서 살아가고 있다는 사실 하나만으로도 스스로를 인정하게되는 시간이었습니다.
+              물론 항공정비사의 꿈은 내려놓게 되었습니다. 하지만 그 과정을 통해 '무엇을 할 수 있고, 어떤 걸 잘할 수 있을까?
+              라는 고민을 하게되었으며, 좌절이나 실패라고 생각하기보다는, 내 삶을 다시 설계할 수 있는 기회로 받아들여졌습니다.
+              그렇게 코딩이라는 새로운 분야에 뛰어들게 되었습니다.
+          </p>
         </>
     ),
   },
+    {
+        title: "My Certification",
+        bgColor: "bg-sky-200",
+        labelColor: "bg-sky-300",
+        text: "20.12.20 ~ 21.04.30",
+        image: "/certification.png",
+        modalContent:(
+            <>
+                <h3 className="text-lg font-semibold mb-2">세부 내용1</h3>
+                <p>상세 설명</p>
+            </>
+        ),
+    },
   {
     title: "In Yonsei",
     bgColor: "bg-zinc-800",
     labelColor: "bg-yellow-400",
     text: "22.09.30 ~ 04.08.29",
-    image: "/ureca.jpg",
+    image: "/yonsei1.jpg",
     modalContent:(
         <>
           <h3 className="text-lg font-semibold mb-2">세부 내용1</h3>
@@ -80,7 +93,7 @@ function InfoCards() {
         {cardData.map((card, index) => (
           <motion.div
             key={index}
-            className={`relative rounded-3xl p-4 flex-col justify-between shadow-md text-white ${card.bgColor}`}
+            className={`relative aspect-square rounded-3xl p-4 flex flex-col justify-between shadow-md text-white ${card.bgColor}`}
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: index * 0.5 }}
