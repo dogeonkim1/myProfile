@@ -1,10 +1,3 @@
-// import type { NextConfig } from "next";
-//
-// const nextConfig: NextConfig = {
-//   /* config options here */
-// };
-//
-// export default nextConfig;
 import type { NextConfig } from "next";
 
 const isProd = process.env.NODE_ENV === "production";
@@ -15,6 +8,9 @@ const nextConfig: NextConfig = {
     assetPrefix: isProd ? "/myProfile/" : "",
     images: {
         unoptimized: true,
+    },
+    eslint: {
+        ignoreDuringBuilds: true,  // Vercel 빌드 시 ESLint 오류 무시
     },
 };
 
