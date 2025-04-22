@@ -503,77 +503,70 @@ export default memo(TMIModal);
     /*---------------------------------------------------------------------------------------------*/
 }
 export default function ShowCode() {
-    const [selectFile, setSelectFile] = useState<string>(Object.keys(codeSamples)[0]);
+    const [selectFile, setSelectFile] = useState("Hero.tsx");
 
-    const handleButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
+    const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         setSelectFile(e.currentTarget.value);
     };
 
     return (
-        <>
-        <div className="w-full text-center py-10 bg-white">
+        <div className="relative w-full fixed inset-0 z-50 bg-zinc-950 overflow-y-auto">
+            {/* 제목 */}
             <motion.h2
-                className="text-3xl font-bold text-gray-800"
-                initial={{ y: -50, opacity: 0 }}
+                className="text-4xl font-extrabold text-zinc-100 text-center px-6 pt-10 mb-10 tracking-tight"
+                initial={{ y: -40, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.6 }}
             >
-                “도전에서 성장으로, 주도적인 개발자로 리빌딩한 여정”
+                “An Inside Look at My Portfolio Code”
             </motion.h2>
-        </div>
-        <div className="flex flex-col lg:flex-row h-screen font-sans">
-            {/* 좌측 메뉴 */}
-            <aside className="w-full lg:w-1/5 bg-zinc-900 text-white p-6 space-y-4">
-                <h2 className="text-2xl font-bold mb-6 border-b border-zinc-700 pb-2">Code Files</h2>
-                <div className="flex flex-col space-y-2">
+
+            {/* 전체 컨텐츠 */}
+            <div className="flex flex-col w-full max-w-7xl mx-auto px-6 pb-16 space-y-6">
+                {/* 메뉴 버튼 영역 */}
+                <div className="flex justify-center flex-wrap gap-2">
                     {Object.keys(codeSamples).map((file) => (
                         <button
                             key={file}
-                            className={`px-4 py-2 rounded-md text-left transition ${
-                                selectFile === file
-                                    ? "bg-blue-500 text-white"
-                                    : "bg-zinc-800 hover:bg-zinc-700 text-zinc-300"
-                            }`}
                             value={file}
                             onClick={handleButtonClick}
+                            className={`px-4 py-2 rounded-xl text-sm font-medium shadow-sm transition-all border border-zinc-700 ${
+                                selectFile === file
+                                    ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white"
+                                    : "bg-zinc-900 text-zinc-300 hover:bg-zinc-800"
+                            }`}
                         >
                             {file}
                         </button>
                     ))}
                 </div>
-            </aside>
 
-            {/* 코드뷰 */}
-            <main className="flex-grow w-full lg:w-4/5 bg-zinc-800 text-white p-6 overflow-hidden">
-                <h2 className="text-2xl font-semibold mb-4 border-b border-zinc-700 pb-2">{selectFile}</h2>
+                {/* 선택된 파일명 */}
+                <div className="text-lg font-semibold text-zinc-200 border-b border-zinc-700 pb-2 text-center">
+                    {selectFile}
+                </div>
 
-                <div className="bg-zinc-900 rounded-lg shadow-inner p-4 h-[calc(100vh-10rem)] overflow-auto whitespace-pre-wrap break-words">
+                {/* 코드 뷰어 */}
+                <div className="bg-zinc-950 rounded-2xl shadow-lg ring-1 ring-zinc-800 p-5 h-[calc(100vh-20rem)] overflow-auto whitespace-pre-wrap break-words">
                     <SyntaxHighlighter
                         language="tsx"
                         style={vscDarkPlus}
                         wrapLines={true}
                         showLineNumbers
                         customStyle={{
-                            backgroundColor: 'transparent',
+                            backgroundColor: "transparent",
                             padding: 0,
                             margin: 0,
-                            overflowX: 'auto', // 수평 스크롤 허용
-                            whiteSpace: 'pre-wrap', // 긴 줄도 줄바꿈되도록
-                            wordBreak: 'break-word',
+                            overflowX: "auto",
+                            whiteSpace: "pre-wrap",
+                            wordBreak: "break-word",
                         }}
                     >
                         {codeSamples[selectFile]}
                     </SyntaxHighlighter>
                 </div>
-
-                {/* 아래 이미지 구조 영역 */}
-                {/*<div className="mt-8 border-t border-zinc-700 pt-6">
-        <h3 className="text-xl font-semibold mb-4">📦 프로젝트 구조</h3>
-        <img src="/ureca.jpg" alt="홈페이지 구조도" className="w-full rounded-lg shadow-md" />
-    </div>*/}
-            </main>
+            </div>
         </div>
-        </>
     );
 }
