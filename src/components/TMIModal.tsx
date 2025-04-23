@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import MainModalComponent from "./MainModalComponent";
+import MainModalComponent from "./common/MainModalComponent";
 import { DataType, SpecifiedModalProps } from "@/type/types";
 
 const tmiSlides: DataType[] = [

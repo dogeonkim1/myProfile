@@ -2,7 +2,7 @@
 
 import React, { memo } from "react";
 import { motion } from "framer-motion";
-import useInView from "../hooks/useInView";
+import useInView from "../../hooks/useInView";
 
 function FadeInSection({ children }: { children: React.ReactNode }) {
   const { ref, isInView } = useInView();
