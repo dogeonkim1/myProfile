@@ -66,7 +66,7 @@ const cardData = [
     title: "In Yonsei",
     bgColor: "bg-zinc-800",
     labelColor: "bg-yellow-400",
-    text: "22.09.30 ~ 04.08.29",
+    text: "22.09.30 ~ 24.08.29",
     image: "/yonsei1.jpg",
     modalContent:(
         <>
@@ -95,7 +95,7 @@ const cardData = [
     ),
   },
   {
-    title: "In Ureca",
+    title: "In LGU+",
     bgColor: "bg-purple-800",
     labelColor: "bg-purple-400",
     text: "25.01.20 ~ 25.08.12",
@@ -205,7 +205,7 @@ function InfoCards() {
               onClick={() => setOpenIndex(null)}
             >
               <motion.div
-                className="bg-white p-8 rounded-2xl shadow-lg w-[90%] max-w-xl text-black relative"
+                className="bg-white p-8 rounded-2xl shadow-lg w-[90%] max-w-xl text-black relative overflow-y-auto max-h-[80vh]"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 50, opacity: 0 }}
