@@ -209,27 +209,27 @@ type Card = {
 const cards: Card[] = [
   {
     id: 1,
-    title: '카카오 스타일 카드',
+    title: '카드1',
     image: '/card1.jpg',
-    content: '이 카드는 귀여운 디자인으로 제작되었습니다.'
+    content: '카드1'
   },
   {
     id: 2,
-    title: '모던한 UI',
+    title: '카드2',
     image: '/card2.jpg',
-    content: '모던하고 깔끔한 레이아웃의 예시입니다.'
+    content: '카드2'
   },
   {
     id: 3,
-    title: '유저 친화적인 인터페이스',
+    title: '카드3',
     image: '/card3.jpg',
-    content: '직관적인 디자인으로 사용성을 높였습니다.'
+    content: '카드3'
   },
   {
     id: 4,
-    title: '재미있는 인터랙션',
+    title: '카드4',
     image: '/card4.jpg',
-    content: '프레이머 모션을 활용한 부드러운 애니메이션'
+    content: '카드4'
   },
 ];
 
