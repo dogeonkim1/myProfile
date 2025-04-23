@@ -1,12 +1,12 @@
 "use client";
 
-import { MouseEvent, useState } from "react";
+import { memo, MouseEvent, useCallback, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 const codeSamples: { [key: string]: string } = {
-    "Hero.tsx": `'use client'
+  "Hero.tsx": `'use client'
 
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
@@ -193,7 +193,7 @@ export default function Hero() {
     );
 }
 `.trim(),
-    "CardSection.tsx": `'use client'
+  "CardSection.tsx": `'use client'
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -287,7 +287,7 @@ export default function CardSection() {
   );
 }
 `.trim(),
-    "SkillsSection.tsx": `'use client'
+  "SkillsSection.tsx": `'use client'
 
 import { motion } from 'framer-motion';
 import { FaReact, FaHtml5, FaCss3Alt, FaNodeJs } from 'react-icons/fa';
@@ -327,7 +327,7 @@ export default function SkillsSection() {
     </section>
   );
 }`.trim(),
-    "SocialSidebar.tsx":`"use client";
+  "SocialSidebar.tsx": `"use client";
 
 import { memo } from "react";
 import { FaInstagram, FaPhoneAlt, FaGithub } from "react-icons/fa";
@@ -360,7 +360,7 @@ function SocialSidebar() {
 
 export default memo(SocialSidebar);
 `.trim(),
-    "HobbyMC.tsx":`"use client";
+  "HobbyMC.tsx": `"use client";
 import { memo } from "react";
 import MainModalComponent from "./MainModalComponent";
 import { DataType, SpecifiedModalProps } from "@/type/types";
@@ -405,7 +405,7 @@ function HobbyModal({ modalHandler }: SpecifiedModalProps) {
 
 export default memo(HobbyModal);
 `.trim(),
-    "FadeInSection.tsx":`"use client";
+  "FadeInSection.tsx": `"use client";
 
 import React, { memo } from "react";
 import { motion } from "framer-motion";
@@ -429,7 +429,7 @@ function FadeInSection({ children }: { children: React.ReactNode }) {
 
 export default memo(FadeInSection);
 `.trim(),
-    "AnimatedSC.tsx":`"use client";
+  "AnimatedSC.tsx": `"use client";
 import { motion } from "framer-motion";
 import { memo } from "react";
 
@@ -448,7 +448,7 @@ function AnimatedSection({ children }: { children: React.ReactNode }) {
 
 export default memo(AnimatedSection);
 `.trim(),
-    "TMIModal.tsx":`"use client";
+  "TMIModal.tsx": `"use client";
 
 import { memo } from "react";
 import MainModalComponent from "./MainModalComponent";
@@ -496,77 +496,78 @@ function TMIModal({ modalHandler }: SpecifiedModalProps) {
 
 export default memo(TMIModal);
 `.trim(),
-
-}
+};
 
 {
-    /*---------------------------------------------------------------------------------------------*/
+  /*---------------------------------------------------------------------------------------------*/
 }
-export default function ShowCode() {
-    const [selectFile, setSelectFile] = useState("Hero.tsx");
+function ShowCode() {
+  const [selectFile, setSelectFile] = useState("Hero.tsx");
 
-    const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        setSelectFile(e.currentTarget.value);
-    };
+  const handleButtonClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    setSelectFile(e.currentTarget.value);
+  }, []);
 
-    return (
-        <div className="relative w-full fixed inset-0 z-50 bg-zinc-950 overflow-y-auto">
-            {/* 제목 */}
-            <motion.h2
-                className="text-4xl font-extrabold text-zinc-100 text-center px-6 pt-10 mb-10 tracking-tight"
-                initial={{ y: -40, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6 }}
+  return (
+    <div className="relative w-full fixed inset-0 z-50 bg-zinc-950 overflow-y-auto">
+      {/* 제목 */}
+      <motion.h2
+        className="text-4xl font-extrabold text-zinc-100 text-center px-6 pt-10 mb-10 tracking-tight"
+        initial={{ y: -40, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+      >
+        “An Inside Look at My Portfolio Code”
+      </motion.h2>
+
+      {/* 전체 컨텐츠 */}
+      <div className="flex flex-col w-full max-w-7xl mx-auto px-6 pb-16 space-y-6">
+        {/* 메뉴 버튼 영역 */}
+        <div className="flex justify-center flex-wrap gap-2">
+          {Object.keys(codeSamples).map((file) => (
+            <button
+              key={file}
+              value={file}
+              onClick={handleButtonClick}
+              className={`px-4 py-2 rounded-xl text-sm font-medium shadow-sm transition-all border border-zinc-700 ${
+                selectFile === file
+                  ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white"
+                  : "bg-zinc-900 text-zinc-300 hover:bg-zinc-800"
+              }`}
             >
-                “An Inside Look at My Portfolio Code”
-            </motion.h2>
-
-            {/* 전체 컨텐츠 */}
-            <div className="flex flex-col w-full max-w-7xl mx-auto px-6 pb-16 space-y-6">
-                {/* 메뉴 버튼 영역 */}
-                <div className="flex justify-center flex-wrap gap-2">
-                    {Object.keys(codeSamples).map((file) => (
-                        <button
-                            key={file}
-                            value={file}
-                            onClick={handleButtonClick}
-                            className={`px-4 py-2 rounded-xl text-sm font-medium shadow-sm transition-all border border-zinc-700 ${
-                                selectFile === file
-                                    ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white"
-                                    : "bg-zinc-900 text-zinc-300 hover:bg-zinc-800"
-                            }`}
-                        >
-                            {file}
-                        </button>
-                    ))}
-                </div>
-
-                {/* 선택된 파일명 */}
-                <div className="text-lg font-semibold text-zinc-200 border-b border-zinc-700 pb-2 text-center">
-                    {selectFile}
-                </div>
-
-                {/* 코드 뷰어 */}
-                <div className="bg-zinc-950 rounded-2xl shadow-lg ring-1 ring-zinc-800 p-5 h-[calc(100vh-20rem)] overflow-auto whitespace-pre-wrap break-words">
-                    <SyntaxHighlighter
-                        language="tsx"
-                        style={vscDarkPlus}
-                        wrapLines={true}
-                        showLineNumbers
-                        customStyle={{
-                            backgroundColor: "transparent",
-                            padding: 0,
-                            margin: 0,
-                            overflowX: "auto",
-                            whiteSpace: "pre-wrap",
-                            wordBreak: "break-word",
-                        }}
-                    >
-                        {codeSamples[selectFile]}
-                    </SyntaxHighlighter>
-                </div>
-            </div>
+              {file}
+            </button>
+          ))}
         </div>
-    );
+
+        {/* 선택된 파일명 */}
+        <div className="text-lg font-semibold text-zinc-200 border-b border-zinc-700 pb-2 text-center">
+          {selectFile}
+        </div>
+
+        {/* 코드 뷰어 */}
+        <div className="bg-zinc-950 rounded-2xl shadow-lg ring-1 ring-zinc-800 p-5 h-[calc(100vh-20rem)] overflow-auto whitespace-pre-wrap break-words">
+          <SyntaxHighlighter
+            language="tsx"
+            style={vscDarkPlus}
+            wrapLines={true}
+            showLineNumbers
+            customStyle={{
+              backgroundColor: "transparent",
+              padding: 0,
+              margin: 0,
+              overflowX: "auto",
+              whiteSpace: "pre-wrap",
+              wordBreak: "break-word",
+            }}
+          >
+            {codeSamples[selectFile]}
+          </SyntaxHighlighter>
+        </div>
+      </div>
+    </div>
+  );
 }
+
+export default memo(ShowCode);
