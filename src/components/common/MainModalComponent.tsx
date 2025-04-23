@@ -39,7 +39,7 @@ function MainModalComponent({ data, modalHandler, value }: ModalProps) {
       data-value={value}
     >
       <div
-        className="relative bg-white p-6 rounded-xl max-w-2xl w-full"
+        className="relative bg-white p-6 rounded-xl max-w-2xl w-[90vw] h-[80vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()} //내부 클릭 시 닫기 방지
       >
         {/* 슬라이더 */}
