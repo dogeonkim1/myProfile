@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useState } from "react";
+import {memo, useEffect, useState} from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -125,10 +125,26 @@ const cardData = [
   },
 ];
 
+
 function InfoCards() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  return (
+    useEffect(() => {
+        // 모달이 열려 있을 때 body 스크롤 방지
+        if (openIndex !== null) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+
+        // 컴포넌트 언마운트 시 복구
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [openIndex]);
+
+
+    return (
     <section className="mt-35 px-4">
       {/*section title*/}
       <motion.h2
